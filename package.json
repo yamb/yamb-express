@@ -1,0 +1,25 @@
+{
+    "name": "yamb-express"
+  , "version": "0.0.1"
+  , "author": "Alexey Simonenko <alexey@simonenko.su>"
+  , "repository": {
+        "type": "git"
+      , "url": "https://github.com/yamb/yamb-express.git"
+    }
+  , "engines": {
+      "node": "~0.11"
+    }
+  , "dependencies": {
+        "yamb": "0.0.x"
+      , "co-easymongo": "0.1.x"
+      , "express": "3.4.x"
+      , "express-hbs": "0.5.x"
+    }
+  , "devDependencies": {
+      "supervisor": "~0.5"
+    }
+  , "scripts": {
+      "start": "PORT=3000 ./node_modules/.bin/supervisor -e \"coffee|hbs\" server.js"
+    }
+  , "license": "MIT"
+}

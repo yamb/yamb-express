@@ -1,1 +1,25 @@
-Могура (土竜)
+# Yamb on Express
+
+[![NPM version](https://badge.fury.io/js/yamb-express.png)](http://badge.fury.io/js/yamb-express) [![Dependency Status](https://david-dm.org/yamb/yamb-express.png)](https://david-dm.org/yamb/yamb-express) [![devDependency Status](https://david-dm.org/yamb/yamb-express/dev-status.png)](https://david-dm.org/yamb/yamb-express#info=devDependencies)
+
+## Installation
+
+_TO BE DONE_
+
+## Examples
+
+_TO BE DONE_
+
+## API
+
+_TO BE DONE_
+
+## Author
+
+* [Alexey Simonenko](mailto:alexey@simonenko.su), [simonenko.su](http://simonenko.su)
+
+## License
+
+The MIT License, see the included `license.md` file.
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/yamb/yamb-express/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
