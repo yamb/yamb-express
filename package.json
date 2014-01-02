@@ -16,10 +16,11 @@
       , "express-hbs": "0.5.x"
     }
   , "devDependencies": {
-      "supervisor": "~0.5"
+        "supervisor": "~0.5"
+      , "jshint": "~2.4"
     }
   , "scripts": {
-      "start": "PORT=3000 ./node_modules/.bin/supervisor -e \"coffee|hbs\" server.js"
+      "start": "PORT=3000 ./node_modules/.bin/supervisor -e \"js|hbs\" server.js"
     }
   , "license": "MIT"
 }
