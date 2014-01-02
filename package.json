@@ -20,7 +20,7 @@
       , "jshint": "~2.4"
     }
   , "scripts": {
-      "start": "PORT=3000 ./node_modules/.bin/supervisor -e \"js|hbs\" server.js"
+      "start": "PORT=3000 ./node_modules/.bin/supervisor -e \"js|hbs\" -- --harmony server.js"
     }
   , "license": "MIT"
 }
