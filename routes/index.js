@@ -1,7 +1,6 @@
-var controllers = require('./../controllers');
+"use strict";
 
 module.exports = function(server) {
-
-  server.get('/', controllers.index);
-
+  require('./yamb')(server);
+  require('./admin')(server);
 };
