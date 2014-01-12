@@ -1,7 +1,7 @@
 "use strict";
 
-module.exports = function(server) {
+module.exports = function(app) {
   var action = require('./../controllers/yamb');
 
-  server.get('/', action.index);
+  app.get('/', action.index);
 };

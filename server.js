@@ -1,17 +1,26 @@
 "use strict";
 
-var config = require('./config/app');
+var config = require('./config'),
 
-var express = require('express');
-var engine  = require('express-hbs');
+express = require('express'),
+thunkify = require('co-express'),
+engine = require('express-hbs'),
 
-var mongo = require('co-easymongo')(config.dbname);
+app = thunkify(express()),
 
-var routes = require('./routes');
-var server = express();
+mongo = require('co-easymongo')({
+  dbname: config.get('dbname')
+}),
 
-routes(server);
+routes = require('./routes');
 
-require('http').createServer(server).listen(config.port, function() {
-  console.log('Run server on ' + config.port + ' port');
+app.response.yamb = require('yamb')({
+  storage: mongo,
+  yapi: config.get('yapi')
+});
+
+routes(app);
+
+require('http').createServer(app).listen(config.get('port'), function() {
+  console.log('Run server on ' + config.get('port') + ' port');
 });

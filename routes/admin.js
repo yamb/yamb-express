@@ -1,10 +1,10 @@
 "use strict";
 
-module.exports = function(server) {
+module.exports = function(app) {
   var action = require('./../controllers/admin');
 
-  server.get('/yamb', action.index);
-  server.get('/yamb/:yamb', action.show);
-  server.post('/yamb/:yamb', action.update);
-  server.post('/yamb/:yamb/remove', action.remove);
+  app.get('/yamb', action.index);
+  app.get('/yamb/:yamb', action.show);
+  app.post('/yamb/:yamb', action.update);
+  app.post('/yamb/:yamb/remove', action.remove);
 };
