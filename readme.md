@@ -2,6 +2,8 @@
 
 [![NPM version](https://badge.fury.io/js/yamb-express.png)](http://badge.fury.io/js/yamb-express) [![Dependency Status](https://david-dm.org/yamb/yamb-express.png)](https://david-dm.org/yamb/yamb-express) [![devDependency Status](https://david-dm.org/yamb/yamb-express/dev-status.png)](https://david-dm.org/yamb/yamb-express#info=devDependencies)
 
+Currently you must use the `--harmony` flag when running node 0.11.x to get access to generators.
+
 ## Installation
 
 _TO BE DONE_
