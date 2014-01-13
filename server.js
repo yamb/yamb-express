@@ -15,7 +15,7 @@ mongo = require('co-easymongo')({
 routes = require('./routes');
 
 app.response.yamb = require('yamb')({
-  storage: mongo,
+  storage: mongo.collection(config.get('collection')),
   yapi: config.get('yapi')
 });
 
