@@ -19,6 +19,11 @@ app.response.yamb = require('yamb')({
   yapi: config.get('yapi')
 });
 
+app.configure('development', function() {
+  app.use(express.logger('dev'));
+  app.use(express.errorHandler());
+});
+
 routes(app);
 
 require('http').createServer(app).listen(config.get('port'), function() {
