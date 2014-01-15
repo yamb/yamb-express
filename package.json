@@ -15,7 +15,7 @@
       , "co-easymongo": "0.2.x"
       , "express": "3.4.x"
       , "co-express": "0.4.x"
-      , "express-hbs": "0.5.x"
+      , "express-hbs": "0.6.x"
       , "nconf": "0.6.x"
     }
   , "devDependencies": {
