@@ -14,10 +14,8 @@ mongo = require('co-easymongo')({
 
 routes = require('./routes');
 
-if (config.get('env') === 'development') {
+if ('development' === app.settings.env) {
   app.use(express.logger('dev'));
-  app.use(express.errorHandler());
-
   app.use(express.static(__dirname + '/public'));
 }
 
@@ -34,6 +32,8 @@ app.response.yamb = require('yamb')({
   storage: mongo.collection(config.get('collection')),
   yapi: config.get('yapi')
 });
+
+app.response.error = require('./lib/notfound');
 
 routes(app);
 

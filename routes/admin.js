@@ -1,6 +1,6 @@
 "use strict";
 
-module.exports = function(app) {
+module.exports = function(app, middleware) {
   var action = require('./../controllers/admin');
 
   app.get('/yamb', action.index);
