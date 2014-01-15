@@ -4,9 +4,9 @@ var config = require('./config'),
 
 express = require('express'),
 thunkify = require('co-express'),
-engine = require('express-hbs'),
+handlebars = require('express-hbs'),
 
-app = thunkify(express()),
+app = module.exports = thunkify(express()),
 
 mongo = require('co-easymongo')({
   dbname: config.get('dbname')
@@ -14,18 +14,30 @@ mongo = require('co-easymongo')({
 
 routes = require('./routes');
 
+if (config.get('env') === 'development') {
+  app.use(express.logger('dev'));
+  app.use(express.errorHandler());
+
+  app.use(express.static(__dirname + '/public'));
+}
+
+app.engine('hbs', handlebars.express3());
+
+app.set('view engine', 'hbs');
+app.set('views', __dirname + '/views');
+
+app.use(express.json());
+app.use(express.urlencoded());
+app.use(express.methodOverride());
+
 app.response.yamb = require('yamb')({
   storage: mongo.collection(config.get('collection')),
   yapi: config.get('yapi')
 });
 
-app.configure('development', function() {
-  app.use(express.logger('dev'));
-  app.use(express.errorHandler());
-});
-
 routes(app);
 
-require('http').createServer(app).listen(config.get('port'), function() {
-  console.log('Run server on ' + config.get('port') + ' port');
-});
+if (!module.parent) {
+  app.listen(config.get('port'));
+  console.log('\n  running yamb on port ' + config.get('port') + '\n');
+}
