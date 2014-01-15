@@ -7,7 +7,7 @@ module.exports = function *(req, res, next, id) {
   if (!post) {
     next(new res.error('Failed to load post'));
   } else {
-    res.post = post;
+    res.post = res.locals.post = post;
     next();
   }
 };
