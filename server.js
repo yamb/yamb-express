@@ -4,7 +4,8 @@ var config = require('./config'),
 
 express = require('express'),
 thunkify = require('co-express'),
-handlebars = require('express-hbs'),
+hbs = require('express-hbs'),
+helpers = require('hbs-helpers'),
 
 app = module.exports = thunkify(express()),
 
@@ -19,7 +20,17 @@ if ('development' === app.settings.env) {
   app.use(express.static(__dirname + '/public'));
 }
 
-app.engine('hbs', handlebars.express3());
+for (var helper in helpers) {
+  if (!helpers.hasOwnProperty(helper)) {
+    continue;
+  }
+
+  hbs.registerHelper(helper, helpers[helper]);
+}
+
+app.engine('hbs', hbs.express3({
+  defaultLayout: __dirname + '/views/layout'
+}));
 
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');

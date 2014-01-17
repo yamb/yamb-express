@@ -16,6 +16,7 @@
       , "express": "3.4.x"
       , "co-express": "0.4.x"
       , "express-hbs": "0.6.x"
+      , "hbs-helpers": "1.0.x"
       , "nconf": "0.6.x"
     }
   , "devDependencies": {
