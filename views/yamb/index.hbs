@@ -1,0 +1,18 @@
+<header>
+  <h1>Posts <small>{{length posts}}</small></h1>
+</header>
+
+<main>
+
+  {{#each posts}}
+  <article>
+    <a href="{{uri}}">
+      <header>
+        <h2>{{title}}</h2>
+      </header>
+      <section>{{{preview}}}</section>
+    </a>
+  </article>
+  {{/each}}
+
+</main>

@@ -1,0 +1,13 @@
+<header>
+  <h1>Posts <small>{{length posts}}</small></h1>
+</header>
+
+<main>
+
+  <ul>
+  {{#each posts}}
+    <li>{{{formatdate created time=false}}} <a href="/yamb/{{id}}">{{title}}</a></li>
+  {{/each}}
+  </ul>
+
+</main>
