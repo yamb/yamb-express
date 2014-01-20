@@ -5,7 +5,7 @@ var config = require('./config'),
 express = require('express'),
 thunkify = require('co-express'),
 hbs = require('express-hbs'),
-helpers = require('hbs-helpers'),
+helpers = require('./lib/helpers'),
 
 app = module.exports = thunkify(express()),
 
