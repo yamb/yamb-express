@@ -1,0 +1,42 @@
+<header>
+  <h1>{{unlesspost 'New post' post.title}}</h1>
+  {{#if post.id}}
+    <mark><a href="{{post.uri}}">http://yamb.dev{{post.uri}}</a></mark>
+  {{/if}}
+</header>
+
+<main>
+
+  <p><a href="/yamb">Back</a></p>
+
+  <form action="/yamb/{{unlesspost 'create' post.id}}" method="post">
+    <p>
+      <label for="title">Title</label><br>
+      <input type="text" id="title" name="title" value="{{post.title}}" required>
+    </p>
+
+    <p>
+      <label for="text">Text</label><br>
+      <textarea id="text" name="text" rows="8" cols="40" required>{{striptags post.text}}</textarea>
+    </p>
+
+    <p>
+      <label for="tags">Tags</label><br>
+      <input type="text" id="tags" name="tags" value="{{post.tags}}">
+    </p>
+
+    <p>
+      <label for="related">Related posts</label><br>
+      <select id="related" name="related" multiple>{{{formoption related}}}</select>
+    </p>
+
+    <p>
+      <input type="checkbox" id="active" name="active" value="Y"{{#if post.active}} checked{{/if}}>
+      <label for="active">Publish?</label>
+    </p>
+
+    <input type="submit" value="Save">
+    {{#if post.id}}<a href="/yamb/{{post.id}}/remove">Delete</a>{{/if}}
+  </form>
+
+</main>
