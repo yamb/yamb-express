@@ -10,9 +10,11 @@
       <header>
         <h2>{{title}}</h2>
       </header>
-      <section>{{{preview}}}</section>
+      <section>
+        {{{striptags (htmlify preview)}}}
+      </section>
     </a>
-  </article>
+  </article><hr>
   {{/each}}
 
 </main>
