@@ -32,8 +32,6 @@ exports.save = function *(req, res) {
 exports.show = function *(req, res) {
   var related = yield res.yamb.fetchAll({id: {$ne: res.post.id}}, {sort: 'name'});
 
-  console.log(res.post.json());
-
   res.render('admin/show', {
     related: related
   });

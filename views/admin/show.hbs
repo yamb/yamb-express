@@ -1,3 +1,11 @@
+<nav><a href="/">Public view</a></nav>
+
+<header>
+  <h1>Admin panel</h1>
+</header>
+
+<hr>
+
 <header>
   <h1>{{unlesspost 'New post' post.title}}</h1>
   {{#if post.id}}
@@ -5,9 +13,11 @@
   {{/if}}
 </header>
 
-<main>
+<p><a href="/yamb">Back</a></p>
 
-  <p><a href="/yamb">Back</a></p>
+<hr>
+
+<main>
 
   <form action="/yamb/{{unlesspost 'create' post.id}}" method="post">
     <p>

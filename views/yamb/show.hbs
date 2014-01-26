@@ -1,3 +1,7 @@
+<nav><a href="/yamb">Admin panel</a></nav>
+
+<hr>
+
 <main>
 
   <a href="/">Back</a>
@@ -5,7 +9,7 @@
   {{#with post}}
   <header>
     <h1>{{title}}</h1>
-    <mark>{{tags}}</mark>
+    <span>{{{formatdate created}}}; tags: {{tags}}; </span>
   </header>
 
   <section>
@@ -14,11 +18,14 @@
   {{/with}}
 
   {{#if related}}
-    <aside><ul>
-      {{#each related}}
-      <li><a href="{{uri}}">{{title}}</a></li>
-      {{/each}}
-    </ul></aside>
+    <aside>
+      <h3>Realted posts</h3>
+      <ul>
+        {{#each related}}
+        <li><a href="{{uri}}">{{title}}</a></li>
+        {{/each}}
+      </ul>
+    </aside>
   {{/if}}
 
 </main>

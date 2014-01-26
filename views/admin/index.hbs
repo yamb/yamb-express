@@ -1,10 +1,16 @@
+<nav><a href="/">Public view</a></nav>
+
 <header>
-  <h1>Posts <small>{{length posts}}</small></h1>
+  <h1>Admin panel</h1>
 </header>
+
+<hr>
 
 <main>
 
-  <p><a href="/yamb/create">Create yamb</a></p>
+  <p><a href="/yamb/create">Create new</a></p>
+
+  <h3>List of posts <small>({{length posts}})</small></h3>
 
   <ul>
   {{#each posts}}
