@@ -11,12 +11,12 @@
       "node": "~0.11"
     }
   , "dependencies": {
-        "yamb": "~0.0.6"
-      , "co-easymongo": "0.2.x"
+        "yamb": "~0.0.7"
+      , "co-easymongo": "~0.2.1"
       , "express": "3.4.x"
       , "co-express": "0.4.x"
-      , "express-hbs": "0.6.x"
-      , "hbs-helpers": "1.0.x"
+      , "express-hbs": "0.7.x"
+      , "hbs-helpers": "~1.0.1"
       , "nconf": "0.6.x"
     }
   , "devDependencies": {
