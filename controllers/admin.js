@@ -55,6 +55,7 @@ exports.update = function *(req, res) {
 
 exports.remove = function *(req, res) {
   var result = yield res.post.remove();
+  delete res.post;
 
   res.redirect('/yamb?result=' + result);
 };
