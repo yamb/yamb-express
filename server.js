@@ -1,19 +1,19 @@
 "use strict";
 
-var config = require('./config'),
+var config = require('./config');
 
-express = require('express'),
-thunkify = require('co-express'),
-hbs = require('express-hbs'),
-helpers = require('./lib/helpers'),
+var express = require('express');
+var thunkify = require('co-express');
+var hbs = require('express-hbs');
+var helpers = require('./lib/helpers');
 
-app = module.exports = thunkify(express()),
+var app = module.exports = thunkify(express());
 
-mongo = require('co-easymongo')({
+var mongo = require('co-easymongo')({
   dbname: config.get('dbname')
-}),
+});
 
-routes = require('./routes');
+var routes = require('./routes');
 
 if ('development' === app.settings.env) {
   app.use(express.logger('dev'));

@@ -1,10 +1,10 @@
 "use strict";
 
-var fs = require('fs'),
-nconf = module.exports = require('nconf'),
+var fs = require('fs');
+var nconf = module.exports = require('nconf');
 
-env = process.env.NODE_ENV || 'development',
-config = './config/app.' + env + '.json';
+var env = process.env.NODE_ENV || 'development';
+var config = './config/app.' + env + '.json';
 
 nconf.overrides({'env': env});
 nconf.env(['port', 'yapi']);
