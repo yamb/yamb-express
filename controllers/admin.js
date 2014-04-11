@@ -41,6 +41,9 @@ exports.update = function *(req, res) {
   if (!req.body.related) {
     req.body.related = [];
   }
+  if (!req.body.active) {
+    req.body.active = false;
+  }
 
   var post = res.post.update(req.body);
 
