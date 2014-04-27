@@ -11,8 +11,8 @@
       "node": ">=0.11"
     }
   , "dependencies": {
-        "yamb": "~0.0.8"
-      , "co-easymongo": "~0.2.3"
+        "yamb": "~0.0.9"
+      , "co-easymongo": "~0.2.4"
       , "express": "3.5.x"
       , "co-express": "0.4.x"
       , "express-hbs": "0.7.x"
@@ -20,7 +20,7 @@
       , "nconf": "0.6.x"
     }
   , "devDependencies": {
-        "supervisor": "~0.5"
+        "supervisor": "~0.6"
       , "jshint": "~2.5"
     }
   , "scripts": {
