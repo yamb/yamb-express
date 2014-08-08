@@ -3,11 +3,10 @@
 var config = require('./config');
 
 var express = require('express');
-var thunkify = require('co-express');
 var hbs = require('express-hbs');
 var helpers = require('./lib/helpers');
 
-var app = module.exports = thunkify(express());
+var app = module.exports = express();
 
 var mongo = require('co-easymongo')({
   dbname: config.get('dbname')
@@ -16,7 +15,9 @@ var mongo = require('co-easymongo')({
 var routes = require('./routes');
 
 if ('development' === app.settings.env) {
-  app.use(express.logger('dev'));
+  var morgan = require('morgan');
+
+  app.use(morgan('dev'));
   app.use(express.static(__dirname + '/public'));
 }
 
@@ -35,9 +36,9 @@ app.engine('hbs', hbs.express3({
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(express.methodOverride());
+// app.use(express.json());
+// app.use(express.urlencoded());
+// app.use(express.methodOverride());
 
 app.response.yamb = require('yamb')({
   storage: mongo.collection(config.get('collection')),

@@ -1,6 +1,9 @@
 "use strict";
 
-exports.index = function *(req, res) {
+var wrap = require('co-express');
+var thunks = {};
+
+thunks.index = function *(req, res) {
   var posts = yield res.yamb.fetchAll();
 
   res.render('admin/index', {
@@ -8,7 +11,7 @@ exports.index = function *(req, res) {
   });
 };
 
-exports.create = function *(req, res) {
+thunks.create = function *(req, res) {
   var related = yield res.yamb.fetchAll(null, {sort: 'name'});
 
   res.render('admin/show', {
@@ -17,7 +20,7 @@ exports.create = function *(req, res) {
   });
 };
 
-exports.save = function *(req, res) {
+thunks.save = function *(req, res) {
   var post = res.yamb.create(req.body);
 
   try {
@@ -29,7 +32,7 @@ exports.save = function *(req, res) {
   res.redirect('/yamb/' + post.id);
 };
 
-exports.show = function *(req, res) {
+thunks.show = function *(req, res) {
   var related = yield res.yamb.fetchAll({id: {$ne: res.post.id}}, {sort: 'name'});
 
   res.render('admin/show', {
@@ -37,7 +40,7 @@ exports.show = function *(req, res) {
   });
 };
 
-exports.update = function *(req, res) {
+thunks.update = function *(req, res) {
   if (!req.body.related) {
     req.body.related = [];
   }
@@ -56,9 +59,15 @@ exports.update = function *(req, res) {
   res.redirect('/yamb/' + post.id);
 };
 
-exports.remove = function *(req, res) {
+thunks.remove = function *(req, res) {
   var result = yield res.post.remove();
   delete res.post;
 
   res.redirect('/yamb?result=' + result);
 };
+
+for (var name in thunks) {
+  if (thunks.hasOwnProperty(name)) {
+    exports[name] = wrap(thunks[name]);
+  }
+}

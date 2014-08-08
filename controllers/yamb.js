@@ -1,6 +1,9 @@
 "use strict";
 
-exports.index = function *(req, res) {
+var wrap = require('co-express');
+var thunks = {};
+
+thunks.index = function *(req, res) {
   var posts = yield res.yamb.fetchAll({active: true});
 
   res.render('yamb/index', {
@@ -8,7 +11,7 @@ exports.index = function *(req, res) {
   });
 };
 
-exports.show = function *(req, res) {
+thunks.show = function *(req, res) {
   var uri = [
     req.params.year,
     req.params.month,
@@ -23,3 +26,9 @@ exports.show = function *(req, res) {
     related: related
   });
 };
+
+for (var name in thunks) {
+  if (thunks.hasOwnProperty(name)) {
+    exports[name] = wrap(thunks[name]);
+  }
+}

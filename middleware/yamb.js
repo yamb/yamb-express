@@ -1,7 +1,9 @@
 "use strict";
 
+var wrap = require('co-express');
+
 // middleware for :yamb param in route
-module.exports = function *(req, res, next, id) {
+module.exports = wrap(function *(req, res, next, id) {
   var post = yield res.yamb.fetch({id: id});
 
   if (!post) {
@@ -10,4 +12,4 @@ module.exports = function *(req, res, next, id) {
     res.post = res.locals.post = post;
     next();
   }
-};
+});

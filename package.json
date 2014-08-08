@@ -13,15 +13,16 @@
   , "dependencies": {
         "yamb": "~0.0.11"
       , "co-easymongo": "~0.2.6"
-      , "express": "3.10.x"
-      , "co-express": "0.4.x"
-      , "express-hbs": "0.7.x"
+      , "express": "~4.8.2"
+      , "co-express": "~1.0"
+      , "express-hbs": "~0.7.10"
       , "hbs-helpers": "~1.0.1"
-      , "nconf": "0.6.x"
+      , "nconf": "~0.6.9"
     }
   , "devDependencies": {
         "supervisor": "~0.6"
       , "jshint": "~2.5"
+      , "morgan": "~1.2"
     }
   , "scripts": {
       "start": "PORT=3000 ./node_modules/.bin/supervisor -e \"js|hbs\" -- --harmony server.js"
