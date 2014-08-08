@@ -11,8 +11,8 @@
       "node": ">=0.11"
     }
   , "dependencies": {
-        "yamb": "~0.0.10"
-      , "co-easymongo": "~0.2.5"
+        "yamb": "~0.0.11"
+      , "co-easymongo": "~0.2.6"
       , "express": "3.10.x"
       , "co-express": "0.4.x"
       , "express-hbs": "0.7.x"
