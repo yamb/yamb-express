@@ -3,6 +3,7 @@
 var config = require('./config');
 
 var express = require('express');
+var parser = require('body-parser')
 var hbs = require('express-hbs');
 var helpers = require('./lib/helpers');
 
@@ -36,9 +37,8 @@ app.engine('hbs', hbs.express3({
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 
-// app.use(express.json());
-// app.use(express.urlencoded());
-// app.use(express.methodOverride());
+app.use(parser.urlencoded({extended: false}));
+app.use(parser.json())
 
 app.response.yamb = require('yamb')({
   storage: mongo.collection(config.get('collection')),
