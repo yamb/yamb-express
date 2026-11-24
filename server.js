@@ -1,55 +1,34 @@
-"use strict";
+import { once } from 'node:events';
 
-var config = require('./config');
+import express from 'express';
 
-var express = require('express');
-var parser = require('body-parser')
-var hbs = require('express-hbs');
-var helpers = require('./lib/helpers');
+import { open } from './models/blog.js';
+import { routes } from './routes/blog.js';
 
-var app = module.exports = express();
+const hostname = '127.0.0.1';
+const port = Number(process.env.PORT ?? 3000);
+const base = new URL(`http://${hostname}:${port}`);
 
-var mongo = require('co-easymongo')({
-  dbname: config.get('dbname')
+const stopping = Promise.withResolvers();
+process.on('SIGINT', stopping.resolve);
+process.on('SIGTERM', stopping.resolve);
+
+await using resources = new AsyncDisposableStack();
+
+const blog = await open(resources, {
+  base,
+  path: process.env.YAMB_POSTS_DIR
 });
 
-var routes = require('./routes');
+const app = express();
+app.set('env', 'production');
+app.use(routes(blog, base));
 
-if ('development' === app.settings.env) {
-  var morgan = require('morgan');
+const server = app.listen(port, hostname);
+await once(server, 'listening');
 
-  app.use(morgan('dev'));
-  app.use(express.static(__dirname + '/public'));
-}
+await using listener = server;
+base.port = String(listener.address().port);
 
-for (var helper in helpers) {
-  if (!helpers.hasOwnProperty(helper)) {
-    continue;
-  }
-
-  hbs.registerHelper(helper, helpers[helper]);
-}
-
-app.engine('hbs', hbs.express3({
-  defaultLayout: __dirname + '/views/layout'
-}));
-
-app.set('view engine', 'hbs');
-app.set('views', __dirname + '/views');
-
-app.use(parser.urlencoded({extended: false}));
-app.use(parser.json())
-
-app.response.yamb = require('yamb')({
-  storage: mongo.collection(config.get('collection')),
-  yapi: config.get('yapi')
-});
-
-app.response.error = require('./lib/notfound');
-
-routes(app);
-
-if (!module.parent) {
-  app.listen(config.get('port'));
-  console.log('\n  running yamb on port ' + config.get('port') + '\n');
-}
+console.log(base.origin);
+await stopping.promise;
