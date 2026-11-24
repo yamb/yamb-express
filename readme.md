@@ -1,5 +1,7 @@
 # Yamb on Express
 
+[![Build status][github-actions-image]][github-actions-url]
+
 A small Express blog built on [Yamb](https://github.com/yamb/yamb). Express handles HTTP, and Yamb keeps posts as Markdown files and renders them as HTML. Read the code as an example of where the line between the two runs.
 
 ## Quick start
@@ -132,3 +134,6 @@ async function save(res, post, { title, text, status }) {
 ## License
 
 MIT. See `LICENSE`.
+
+[github-actions-image]: https://github.com/yamb/yamb-express/actions/workflows/ci.yml/badge.svg
+[github-actions-url]: https://github.com/yamb/yamb-express/actions/workflows/ci.yml
