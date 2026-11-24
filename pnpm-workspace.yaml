@@ -1,0 +1,16 @@
+minimumReleaseAge: 1440
+minimumReleaseAgeStrict: true
+minimumReleaseAgeIgnoreMissingTime: false
+minimumReleaseAgeExcludePrune: true
+blockExoticSubdeps: true
+trustPolicy: no-downgrade
+
+minimumReleaseAgeExclude:
+  - yamb@1.0.5
+  - yamb-markdown@0.1.4
+  - yamb-render-html@0.1.2
+  - yamb-storage-files@0.1.3
+  - oxfmt@0.80.0
+  - oxlint@1.95.0
+  - '@oxfmt/binding-*'
+  - '@oxlint/binding-*'
