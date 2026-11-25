@@ -1,5 +1,5 @@
 import { PostStatusError, PostValidationError, UriTakenError } from 'yamb/errors';
-import { IdSchema, UriSchema } from 'yamb/schemas';
+import { IdSchema } from 'yamb/schemas';
 
 import * as views from '../views/blog.js';
 
@@ -34,8 +34,7 @@ export function controller(blog) {
 
     async article(req, res) {
       const { year, month, slug } = req.params;
-      const uri = `${year}/${month}/${slug}`;
-      const post = UriSchema.safeParse(uri).success ? await blog.fetch(uri) : null;
+      const post = await blog.fetch(`${year}/${month}/${slug}`);
 
       if (post?.status !== 'published') {
         res.sendStatus(404);
