@@ -6,10 +6,10 @@ blockExoticSubdeps: true
 trustPolicy: no-downgrade
 
 minimumReleaseAgeExclude:
-  - yamb@1.0.5
-  - yamb-markdown@0.1.4
-  - yamb-render-html@0.1.2
-  - yamb-storage-files@0.1.3
+  - yamb@1.1.0
+  - yamb-markdown@0.1.5
+  - yamb-render-html@0.1.3
+  - yamb-storage-files@0.2.0
   - oxfmt@0.80.0
   - oxlint@1.95.0
   - '@oxfmt/binding-*'

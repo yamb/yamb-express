@@ -82,7 +82,7 @@ With `PORT=0` the system picks a free port, so the server writes the real port b
 
 ### The controller translates between HTTP and posts
 
-Each action asks Yamb for posts: `blog.all()` for the list, `blog.find(id)` for the editor, `blog.fetch(uri)` for a public page and `blog.build()` for a new post. IDs and URIs from the path are checked with Yamb's own `IdSchema` and `UriSchema` first, so a malformed path is a plain 404. Only published posts are served publicly; drafts stay in the editor.
+Each action asks Yamb for posts: `blog.all()` for the list, `blog.find(id)` for the editor, `blog.fetch(uri)` for a public page and `blog.build()` for a new post. An ID from the path is checked with Yamb's own `IdSchema` first, and `blog.fetch` returns `null` for a path that is not a post URI, so a malformed path is a plain 404. Only published posts are served publicly; drafts stay in the editor.
 
 ```js
 async function save(res, post, { title, text, status }) {
